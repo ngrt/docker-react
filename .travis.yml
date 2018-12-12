@@ -1,0 +1,9 @@
+# need super lever permission to execute the build
+sudo: require
+services:
+  # take a copy of docker
+  - docker
+
+# commands executes before our test are run
+before_install:
+  - docker build -t noufgo/docker-react -f Dockerfile.dev .
