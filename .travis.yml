@@ -7,3 +7,7 @@ services:
 # commands executes before our test are run
 before_install:
   - docker build -t noufgo/docker-react -f Dockerfile.dev .
+
+#test to run and exit back to the command line (coverage)
+script:
+  - docker run noufgo/docker-react npm run test -- --coverage
