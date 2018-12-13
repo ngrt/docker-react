@@ -11,3 +11,19 @@ before_install:
 #test to run and exit back to the command line (coverage)
 script:
   - docker run noufgo/docker-react npm run test -- --coverage
+
+deploy:
+# travis CI has config for a lot of cloud provider
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  # Travis will zip and copy the code to an s3 bucket
+  bucket_name: "elasticbeanstalk-us-east-2-895484735646"
+  # this folder will be created after the first deployment
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_secret_key: 
+    secure: "$AWS_SECRET_KEY"
